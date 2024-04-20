@@ -10,11 +10,11 @@ function App() {
   ]);
 
   const handleClick = (id) => {
-    setEvents(
-      events.filter((event) => {
+    setEvents((prevState) => {
+      return prevState.filter((event) => {
         return id !== event.id;
-      })
-    );
+      });
+    });
 
     console.log(id);
   };
