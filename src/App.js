@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
 
+import { useState } from 'react';
+
 function App() {
+  const [events, setEvents] = useState([
+    { title: "negin's brthday bash", id: 1 },
+    { title: "nasim's brthday bash", id: 2 },
+    { title: "narsis's brthday bash", id: 3 },
+  ]);
+
+  const handleClick = (id) => {
+    setEvents(
+      events.filter((event) => {
+        return id !== event.id;
+      })
+    );
+
+    console.log(id);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {events.map((event) => (
+        <div key={event.id}>
+          <h1>
+            {event.id}-{event.title}
+          </h1>
+          <button onClick={() => handleClick(event.id)}>delete event</button>
+        </div>
+      ))}
     </div>
   );
 }
